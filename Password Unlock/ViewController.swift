@@ -23,6 +23,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var ThirdPassword: UIImageView!
     @IBOutlet weak var FourthPassword: UIImageView!
     
+    
+    // 打入1~0密碼
     @IBAction func typeinpassword(_ sender: UIButton) {
         if let Inputtext = sender.titleLabel?.text,
         PassWordTyped.count < 4{
@@ -33,7 +35,7 @@ class ViewController: UIViewController {
     }
     
     
-    
+    // 按刪除鍵
     @IBAction func deletepassword(_ sender: UIButton) {
         if PassWordTyped.count >= 1 {
             PassWordTyped = String(PassWordTyped.dropLast(1))
@@ -42,7 +44,7 @@ class ViewController: UIViewController {
         }
     }
     
-    
+    // 四格密碼顯示的調整
     func ShowPasswordCount(){
         if PassWordTyped.count == 0{
             FirstPassword.isHighlighted = false
@@ -73,6 +75,7 @@ class ViewController: UIViewController {
         }
     }
     
+    // 把所有打過的密碼，跟四格密碼顯示，都刪掉
     func ClearPassword(){
         FirstPassword.isHighlighted = false
         SecondPassword.isHighlighted = false
@@ -81,6 +84,7 @@ class ViewController: UIViewController {
         PassWordTyped = ""
     }
     
+    // 打入四個密碼後，檢查是否是對的，假設正確密碼是0258
     func CorrectorWrong (){
         if PassWordTyped == "0258"{
             let alert = UIAlertController(title: "Correct!", message: "Good Job!", preferredStyle: .alert)
@@ -98,9 +102,7 @@ class ViewController: UIViewController {
     }
     
     
-    
-    // 4個密碼出來就跳錯誤/正確
-    // 正確/錯誤的showalertmessage
+
     
     
     
