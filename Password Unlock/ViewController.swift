@@ -12,9 +12,100 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view.
     }
 
+    var PassWordTyped = ""
 
+    @IBOutlet weak var FirstPassword: UIImageView!
+    @IBOutlet weak var SecondPassword: UIImageView!
+    @IBOutlet weak var ThirdPassword: UIImageView!
+    @IBOutlet weak var FourthPassword: UIImageView!
+    
+    @IBAction func typeinpassword(_ sender: UIButton) {
+        if let Inputtext = sender.titleLabel?.text,
+        PassWordTyped.count < 4{
+            PassWordTyped.append(Inputtext)
+            print(PassWordTyped)
+            ShowPasswordCount()
+        }
+    }
+    
+    
+    
+    @IBAction func deletepassword(_ sender: UIButton) {
+        if PassWordTyped.count >= 1 {
+            PassWordTyped = String(PassWordTyped.dropLast(1))
+            print(PassWordTyped)
+            ShowPasswordCount()
+        }
+    }
+    
+    
+    func ShowPasswordCount(){
+        if PassWordTyped.count == 0{
+            FirstPassword.isHighlighted = false
+            SecondPassword.isHighlighted = false
+            ThirdPassword.isHighlighted = false
+            FourthPassword.isHighlighted = false
+        }else if PassWordTyped.count == 1{
+            FirstPassword.isHighlighted = true
+            SecondPassword.isHighlighted = false
+            ThirdPassword.isHighlighted = false
+            FourthPassword.isHighlighted = false
+        }else if PassWordTyped.count == 2{
+            FirstPassword.isHighlighted = true
+            SecondPassword.isHighlighted = true
+            ThirdPassword.isHighlighted = false
+            FourthPassword.isHighlighted = false
+        }else if PassWordTyped.count == 3{
+            FirstPassword.isHighlighted = true
+            SecondPassword.isHighlighted = true
+            ThirdPassword.isHighlighted = true
+            FourthPassword.isHighlighted = false
+        }else if PassWordTyped.count == 4{
+            FirstPassword.isHighlighted = true
+            SecondPassword.isHighlighted = true
+            ThirdPassword.isHighlighted = true
+            FourthPassword.isHighlighted = true
+            CorrectorWrong()
+        }
+    }
+    
+    func ClearPassword(){
+        FirstPassword.isHighlighted = false
+        SecondPassword.isHighlighted = false
+        ThirdPassword.isHighlighted = false
+        FourthPassword.isHighlighted = false
+        PassWordTyped = ""
+    }
+    
+    func CorrectorWrong (){
+        if PassWordTyped == "0258"{
+            let alert = UIAlertController(title: "Correct!", message: "Good Job!", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK!", style: .cancel, handler: nil)
+            alert.addAction(action)
+            present(alert, animated: false, completion: ClearPassword)
+        }else{
+            let alert = UIAlertController(title: "Wrong!", message: "Give it another try!", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Try again", style: .cancel, handler: nil)
+            alert.addAction(action)
+            present(alert, animated: false, completion: ClearPassword)
+         }
+        
+        
+    }
+    
+    
+    
+    // 4個密碼出來就跳錯誤/正確
+    // 正確/錯誤的showalertmessage
+    
+    
+    
+    
+    
+    
 }
 
